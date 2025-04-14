@@ -31,10 +31,12 @@ function CaptureScreenshot() {
   }
 
   var player = document.getElementsByClassName("video-stream")[0];
-
+  let vid = document.querySelector('meta[itemprop="identifier"]').getAttribute('content');
   var time = player.currentTime;
-
-  title += " t@=";
+  if(vid){
+    title += title+ " #"+ vid;
+  }
+  title += " t@=" + Math.floor(time) +"s ";
 
   let minutes = Math.floor(time / 60);
 

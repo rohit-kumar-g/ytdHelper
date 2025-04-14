@@ -136,7 +136,8 @@ chrome.downloads.onDeterminingFilename.addListener((item, suggest) => {
     const blobYoutubePattern = /^blob:https:\/\/www\.youtube\.com\/.*/;
     if (blobYoutubePattern.test(item.url)) {
       const today = new Date().toISOString().split("T")[0];
-      tempFolder = `ytss/${today}`;
+      tempFolder = `ytss/${today}/${item.filename.split(' t@=')[0]}`;
+      
     } else {
       for (const rule of rules) {
         if (matches(rule.extension, item.filename)) {
@@ -147,7 +148,7 @@ chrome.downloads.onDeterminingFilename.addListener((item, suggest) => {
     }
 
     console.log(`Folder: ${tempFolder}`);
-    suggest({ filename: `${tempFolder}/${item.filename}` });
+    suggest({ filename: `${tempFolder}/${item.filename.split(' t@=')[1]}` });
   });
 
   // Return true to indicate we will call suggest asynchronously
