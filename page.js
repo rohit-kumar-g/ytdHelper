@@ -31,10 +31,11 @@ function CaptureScreenshot() {
   }
 
   var player = document.getElementsByClassName("video-stream")[0];
-  let vid = document.querySelector('meta[itemprop="identifier"]').getAttribute('content');
+  let vid = document.querySelector("#below > ytd-watch-metadata");
   var time = player.currentTime;
+  title = title.slice(0, 240);
   if(vid){
-    title += title+ " #"+ vid;
+    title +=  " #"+ vid.getAttribute('video-id');
   }
   title += " t@=" + Math.floor(time) +"s ";
 
